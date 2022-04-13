@@ -29,3 +29,26 @@ header .title {
 header {
   border-bottom: 1px solid #d3d6da;
 }
+
+.line1, .line2, .line3{
+  display:flex;
+  justify-content: center;
+  margin-bottom:8px;
+  
+
+}
+
+.line1 button, .line2 button, .line3 button  {
+  background-color: #d3d6da;
+  height: 58px;
+  width:46px;
+  border-radius: 5px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  margin-right: 8px;
+  border:0;
+  font-weight: bold;
+  
+}
