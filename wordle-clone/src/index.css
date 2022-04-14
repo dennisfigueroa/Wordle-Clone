@@ -52,3 +52,13 @@ header {
   font-weight: bold;
   
 }
+.letter {
+  border: 2px solid #d3d6da;
+  height: 80px;
+  width:80px;
+  margin-right:10px;
+}
+
+.row {
+  display:flex;
+}
