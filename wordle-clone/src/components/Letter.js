@@ -1,9 +1,10 @@
 import React from 'react'
 
-function Letter() {
+function Letter({attemptWord, letterPos}) {
+    const letter = board[attemptWord, letterPos];
     return (
         <div className ="letter">
-                
+            {letter}
         </div>
     )
 }
