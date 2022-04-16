@@ -9,8 +9,10 @@ function App() {
     <div className="title">Wordle</div>  
     
     </header>
+    <div className="container" style={{'display': 'flex', 'flex-direction':'column', 'justifyContent': 'center', 'alignItems': 'center'}}>
     <Grid />  
     <Keyboard />
+    </div>
     </div>
   );
 }

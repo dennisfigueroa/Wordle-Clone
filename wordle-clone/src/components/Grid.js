@@ -6,13 +6,14 @@ function Grid() {
     const [board, setBoard] = useState(boardDefault);
 
     return (
+
         <div className="grid">
-            <div className="row"><Letter /><Letter /><Letter /><Letter /><Letter /><Letter /></div>
-            <div className="row"></div>
-            <div className="row"></div>
-            <div className="row"></div>
-            <div className="row"></div>
-            <div className="row"></div>
+            <div className="row" style={{'marginTop':'25px'}}><Letter /><Letter /><Letter /><Letter /><Letter /></div>
+            <div className="row"><Letter /><Letter /><Letter /><Letter /><Letter /></div>
+            <div className="row"><Letter /><Letter /><Letter /><Letter /><Letter /></div>
+            <div className="row"><Letter /><Letter /><Letter /><Letter /><Letter /></div>
+            <div className="row"><Letter /><Letter /><Letter /><Letter /><Letter /></div>
+            <div className="row" style={{'margin-bottom': '50px'}}><Letter /><Letter /><Letter /><Letter /><Letter /></div>
         </div>
     )
 }

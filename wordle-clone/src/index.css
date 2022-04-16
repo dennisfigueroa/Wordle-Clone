@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height:100vh;
+
 }
 
 code {
@@ -40,8 +42,8 @@ header {
 
 .line1 button, .line2 button, .line3 button  {
   background-color: #d3d6da;
-  height: 58px;
-  width:46px;
+  height: 80px;
+  width:60px;
   border-radius: 5px;
   display:flex;
   align-items: center;
@@ -50,15 +52,23 @@ header {
   margin-right: 8px;
   border:0;
   font-weight: bold;
+  font-size:16px;
   
 }
 .letter {
-  border: 2px solid #d3d6da;
+  border: 3px solid #d3d6da;
   height: 80px;
   width:80px;
   margin-right:10px;
+  margin-top:10px;
+  
 }
 
 .row {
   display:flex;
+}
+
+
+header {
+  height:5vh;
 }
