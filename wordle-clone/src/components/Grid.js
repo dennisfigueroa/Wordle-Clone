@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Letter from './Letter';
 
-function Grid() {
+function Grid() { 
     return (
 
         <div className="grid">
