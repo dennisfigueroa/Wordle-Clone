@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import {boardDefault} from './Words';
 import Letter from './Letter';
 
 function Grid() {
-    const [board, setBoard] = useState(boardDefault);
-
     return (
 
         <div className="grid">
