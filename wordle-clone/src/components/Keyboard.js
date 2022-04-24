@@ -1,12 +1,23 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import { boardDefault } from './Words';
+import { AppContext } from '../App';
 
 function Keyboard() {
     const row1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
     const row2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
     const row3 = ["Z", "X", "C", "V", "B", "N", "M"];
+    const { board, setBoard } = useContext(AppContext); 
 
     const clickHandler = (e) => {
-        console.log(e.target.textContent);
+        let i; 
+        for(i =0; i < boardDefault[0].length; i++) {
+            if (boardDefault[0][i] == "") {
+                boardDefault[0][i] = e.target.textContent;
+                break;
+            }
+        }
+        console.log(boardDefault);
+       setBoard(boardDefault); 
     }
                         
     return (
