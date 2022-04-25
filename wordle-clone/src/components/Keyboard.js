@@ -1,5 +1,5 @@
-import React, {useContext} from 'react';
-import { boardDefault } from './Words';
+import React, {useContext, useEffect } from 'react';
+import { isCompositeComponent } from 'react-dom/test-utils';
 import { AppContext } from '../App';
 
 function Keyboard() {
@@ -10,16 +10,40 @@ function Keyboard() {
 
     const clickHandler = (e) => {
         let i; 
-        for(i =0; i < boardDefault[0].length; i++) {
-            if (boardDefault[0][i] == "") {
-                boardDefault[0][i] = e.target.textContent;
+        const newBoard = [...board];
+        // newBoard[0][0] = e.target.textContent;
+         for(i =0; i < newBoard[0].length; i++) {
+             if (newBoard[0][i] == "") {
+                newBoard[0][i] = e.target.textContent;
                 break;
             }
-        }
-        console.log(boardDefault);
-       setBoard(boardDefault); 
+     }
+        console.log( newBoard[0]);
+       setBoard(newBoard); 
     }
-                        
+
+    const deleteHandler = (e) => {
+        let i;
+        const deletedBoard = [...board]; 
+        console.log('This is the last letter' + deletedBoard[0][4] )
+             for(i=1; i < 6 ;i++) 
+            {
+               let lastItem = deletedBoard[0][deletedBoard[0].length - i]
+
+                 if (lastItem != "") {
+                     deletedBoard[0][deletedBoard[0].length - i] = "";
+                   break;
+                } 
+            }
+
+
+            console.log(deletedBoard);
+        setBoard(deletedBoard);
+    }
+    
+    useEffect(() => {
+        console.log('It rendered');
+      });
     return (
         <div className ="keyboard" style={{'height':'40vh'}}>
             <div className="line1">
@@ -31,7 +55,7 @@ function Keyboard() {
             <div className="line3" >
             <button>Enter</button>
             {row3.map( letter =>  <button onClick={clickHandler}>{letter}</button>)}
-            <button>Delete</button>
+            <button onClick={deleteHandler}>Delete</button>
             </div>
         </div>
     )
