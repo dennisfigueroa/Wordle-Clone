@@ -9,6 +9,7 @@ export const AppContext = createContext();
 
 function App() {
   const [board, setBoard] = useState(boardDefault);
+  const [wordAttempt, setWordAttempt] = useState(null);
   return (
     <div className="App">
     <header>
@@ -17,7 +18,7 @@ function App() {
     </header>
     
     <div className="container" style={{'display': 'flex', 'flex-direction':'column', 'justifyContent': 'center', 'alignItems': 'center'}}>
-    <AppContext.Provider value ={{board, setBoard}}>
+    <AppContext.Provider value ={{board, setBoard, wordAttempt, setWordAttempt}}>
     <Grid />  
     <Keyboard />
     </AppContext.Provider>

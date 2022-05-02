@@ -1,12 +1,11 @@
 import React, {useContext, useEffect } from 'react';
-import { isCompositeComponent } from 'react-dom/test-utils';
 import { AppContext } from '../App';
 
 function Keyboard() {
     const row1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
     const row2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
     const row3 = ["Z", "X", "C", "V", "B", "N", "M"];
-    const { board, setBoard } = useContext(AppContext); 
+    const { board, setBoard, wordAttempt, setWordAttempt} = useContext(AppContext); 
 
     const clickHandler = (e) => {
         let i; 
@@ -41,6 +40,12 @@ function Keyboard() {
         setBoard(deletedBoard);
     }
     
+    const enterHandler = () => {
+        const wordToBeAssessed = board[0];
+        setWordAttempt(true);
+
+    }
+
     useEffect(() => {
         console.log('It rendered');
       });
@@ -53,7 +58,7 @@ function Keyboard() {
             {row2.map( letter =>  <button onClick={clickHandler}>{letter}</button>)}
             </div>
             <div className="line3" >
-            <button>Enter</button>
+            <button onClick={enterHandler}>Enter</button>
             {row3.map( letter =>  <button onClick={clickHandler}>{letter}</button>)}
             <button onClick={deleteHandler}>Delete</button>
             </div>
