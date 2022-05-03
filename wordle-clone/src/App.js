@@ -9,7 +9,7 @@ export const AppContext = createContext();
 
 function App() {
   const [board, setBoard] = useState(boardDefault);
-  const [wordAttempt, setWordAttempt] = useState(null);
+  const [wordAttempt, setWordAttempt] = useState([false, false, false, false, false, false]);
   return (
     <div className="App">
     <header>

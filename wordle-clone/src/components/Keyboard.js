@@ -9,13 +9,19 @@ function Keyboard() {
 
     const clickHandler = (e) => {
         let i; 
+        let wordArrayCounter;
         const newBoard = [...board];
         // newBoard[0][0] = e.target.textContent;
-         for(i =0; i < newBoard[0].length; i++) {
-             if (newBoard[0][i] == "") {
-                newBoard[0][i] = e.target.textContent;
-                break;
-            }
+        for(wordArrayCounter =0; wordArrayCounter < 6; wordArrayCounter++) {
+        if (wordAttempt[wordArrayCounter] == false) {
+            for(i =0; i < newBoard[wordArrayCounter].length; i++) {
+                if (newBoard[wordArrayCounter][i] == "") {
+                   newBoard[wordArrayCounter][i] = e.target.textContent;
+                   break;
+               }
+           }
+        }
+         break;
      }
         console.log( newBoard[0]);
        setBoard(newBoard); 
@@ -41,14 +47,18 @@ function Keyboard() {
     }
     
     const enterHandler = () => {
-        const wordToBeAssessed = board[0];
-        setWordAttempt(true);
-
+        let wordCounter;
+        let copyOfWordAttempt = [...wordAttempt]; //Why does thie work? Investigate this. 
+        for (wordCounter = 0; wordCounter < 7; wordCounter++) {
+            if (copyOfWordAttempt[wordCounter] == false) {
+                copyOfWordAttempt[wordCounter] = true
+                break;
+            }
+        }
+        setWordAttempt(copyOfWordAttempt);
+        
     }
-
-    useEffect(() => {
-        console.log('It rendered');
-      });
+ 
     return (
         <div className ="keyboard" style={{'height':'40vh'}}>
             <div className="line1">
