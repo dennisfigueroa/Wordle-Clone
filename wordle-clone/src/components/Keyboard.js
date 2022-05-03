@@ -20,10 +20,10 @@ function Keyboard() {
                    break;
                }
            }
+           break;
         }
-         break;
+        
      }
-        console.log( newBoard[0]);
        setBoard(newBoard); 
     }
 
@@ -58,6 +58,8 @@ function Keyboard() {
         setWordAttempt(copyOfWordAttempt);
         
     }
+
+    useEffect( () => { console.log(board)}, [board])
  
     return (
         <div className ="keyboard" style={{'height':'40vh'}}>
