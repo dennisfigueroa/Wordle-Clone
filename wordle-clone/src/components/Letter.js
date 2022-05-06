@@ -1,11 +1,12 @@
-import React, {useContext, useEffect} from 'react'
+import React, {useContext} from 'react'
 import { AppContext } from '../App';
 
 function Letter({attemptWord, letterPos}) {
-    const { board, wordAttempt } = useContext(AppContext); 
+    const { board, wordAttempt, randomWord } = useContext(AppContext); 
     const letter = board[attemptWord][letterPos];
-    const word = 'STORY';
+    const word = randomWord;
 
+     
     function getBackgroundColor() {
 
         if (word.indexOf(letter) == -1 ) {
