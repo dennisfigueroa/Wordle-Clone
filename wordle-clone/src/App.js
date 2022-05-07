@@ -5,6 +5,7 @@ import React, { createContext, useState, useEffect} from 'react';
 import { boardDefault } from './components/Words';
 import wordleBank from './assets/wordle-bank.txt';
 import useIsMount from './components/useIsMount';
+import NotEnoughLetters from './components/NotEnoughLetters';
 
 export const AppContext = createContext(); 
 
@@ -45,6 +46,7 @@ useEffect( () => {
     
     <div className="container" style={{'display': 'flex', 'flex-direction':'column', 'justifyContent': 'center', 'alignItems': 'center'}}>
     <AppContext.Provider value ={{board, setBoard, wordAttempt, setWordAttempt, randomWord, setRandomWord}}>
+    <NotEnoughLetters / >
     <Grid />  
     <Keyboard />
     </AppContext.Provider>

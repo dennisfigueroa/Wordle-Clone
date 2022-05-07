@@ -5,6 +5,9 @@ function Letter({attemptWord, letterPos}) {
     const { board, wordAttempt, randomWord } = useContext(AppContext); 
     const letter = board[attemptWord][letterPos];
     const word = randomWord;
+
+
+
     function getBackgroundColor() {
 
         if (word.indexOf(letter) == -1 ) {
@@ -18,13 +21,14 @@ function Letter({attemptWord, letterPos}) {
             return '#c9b458';
 
         }
+
        
     }
  
     //<div className ="letter" style= { word.includes(letter) ? { backgroundColor : 'yellow'} : {}} >
     
     return (
-        <div className ="letter" style= { wordAttempt[attemptWord] == true ? { backgroundColor : getBackgroundColor()} : {}}>
+        <div className ="letter" style= { wordAttempt[attemptWord].length > 4 ? { backgroundColor : getBackgroundColor(), color: 'white'} : {}}>
             {letter}
         </div>
     )

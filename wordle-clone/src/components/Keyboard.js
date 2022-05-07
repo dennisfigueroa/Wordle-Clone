@@ -51,15 +51,24 @@ function Keyboard() {
         let copyOfWordAttempt = [...wordAttempt]; //Why does thie work? Investigate this. 
         for (wordCounter = 0; wordCounter < 7; wordCounter++) {
             if (copyOfWordAttempt[wordCounter] == false) {
-                copyOfWordAttempt[wordCounter] = true
-                break;
+                copyOfWordAttempt[wordCounter] = board[wordCounter].toString().replace(/,/g, ''); 
+                if (copyOfWordAttempt[wordCounter].length > 4) {
+                    setWordAttempt(copyOfWordAttempt);
+                    return;
+                }
+                else {
+                    notEnoughLetter(); 
+                    break; 
+                }
             }
         }
-        setWordAttempt(copyOfWordAttempt);
-        
+}
+
+    const notEnoughLetter = () => {
+        alert('Not enough letters'); 
     }
 
-    useEffect( () => { console.log(board)}, [board])
+    useEffect( () => { console.log(wordAttempt)}, [wordAttempt]);
  
     return (
         <div className ="keyboard" style={{'height':'40vh'}}>
