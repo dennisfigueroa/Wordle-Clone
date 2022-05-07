@@ -5,8 +5,6 @@ function Letter({attemptWord, letterPos}) {
     const { board, wordAttempt, randomWord } = useContext(AppContext); 
     const letter = board[attemptWord][letterPos];
     const word = randomWord;
-
-     
     function getBackgroundColor() {
 
         if (word.indexOf(letter) == -1 ) {
@@ -14,9 +12,11 @@ function Letter({attemptWord, letterPos}) {
         }
         if (word[letterPos] == letter) {
             return '#6aaa64';
+
         }
         if (word.includes(letter) && word[letterPos] != letter && letter != "") {
             return '#c9b458';
+
         }
        
     }
