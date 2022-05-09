@@ -5,7 +5,7 @@ import React, { createContext, useState, useEffect} from 'react';
 import { boardDefault } from './components/Words';
 import wordleBank from './assets/wordle-bank.txt';
 import useIsMount from './components/useIsMount';
-import NotEnoughLetters from './components/NotEnoughLetters';
+import ErrorButton from './components/ErrorButton';
 
 export const AppContext = createContext(); 
 
@@ -13,6 +13,8 @@ function App() {
   const [board, setBoard] = useState(boardDefault);
   const [wordAttempt, setWordAttempt] = useState([false, false, false, false, false, false]);
   const [randomWord, setRandomWord] = useState(); 
+  const [booleanForNotEnough, setBooleanForNotEnough] = useState(null); 
+  const [booleanForNotInWordList, setBooleanForNotInWordList] = useState(null); 
   const isMount = useIsMount();
  
   const retrieveRandomWord = async () => {
@@ -39,18 +41,25 @@ useEffect( () => {
  
   return (
     <div className="App">
-    <header>
-    <div className="title">Wordle</div>  
-    
-    </header>
-    
-    <div className="container" style={{'display': 'flex', 'flex-direction':'column', 'justifyContent': 'center', 'alignItems': 'center'}}>
-    <AppContext.Provider value ={{board, setBoard, wordAttempt, setWordAttempt, randomWord, setRandomWord}}>
-    <NotEnoughLetters / >
-    <Grid />  
-    <Keyboard />
-    </AppContext.Provider>
-    </div>
+      <header>
+        <div className="title">Wordle</div>
+
+      </header>
+
+      <div className="container" style={{ 'display': 'flex', 'flex-direction': 'column', 'justifyContent': 'center', 'alignItems': 'center' }}>
+        <AppContext.Provider value={{ 
+          board, setBoard, 
+          wordAttempt, setWordAttempt, 
+          randomWord, setRandomWord, 
+          booleanForNotEnough, setBooleanForNotEnough,
+          booleanForNotInWordList, setBooleanForNotInWordList,
+           }}>
+          {booleanForNotEnough  && <ErrorButton name = "Not enough letters" /> }
+          {booleanForNotInWordList  && <ErrorButton name = "Not in word list" /> }
+          <Grid />
+          <Keyboard />
+        </AppContext.Provider>
+      </div>
     </div>
   );
 }

@@ -1,11 +1,13 @@
 import React, {useContext, useEffect } from 'react';
 import { AppContext } from '../App';
+import wordleBank from '../assets/wordle-bank.txt';
 
 function Keyboard() {
     const row1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
     const row2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
     const row3 = ["Z", "X", "C", "V", "B", "N", "M"];
-    const { board, setBoard, wordAttempt, setWordAttempt} = useContext(AppContext); 
+    
+    const { board, setBoard, wordAttempt, setWordAttempt, setBooleanForNotEnough, setBooleanForNotInWordList} = useContext(AppContext); 
 
     const clickHandler = (e) => {
         let i; 
@@ -27,42 +29,63 @@ function Keyboard() {
        setBoard(newBoard); 
     }
 
+    //T
     const deleteHandler = (e) => {
         let i;
+        let wordArrayCounter;
         const deletedBoard = [...board]; 
         console.log('This is the last letter' + deletedBoard[0][4] )
+        for(wordArrayCounter =0; wordArrayCounter < 6; wordArrayCounter++) {
+            if (wordAttempt[wordArrayCounter] == false) {
              for(i=1; i < 6 ;i++) 
             {
-               let lastItem = deletedBoard[0][deletedBoard[0].length - i]
+               let lastItem = deletedBoard[wordArrayCounter][deletedBoard[wordArrayCounter].length - i]
 
                  if (lastItem != "") {
-                     deletedBoard[0][deletedBoard[0].length - i] = "";
+                     deletedBoard[wordArrayCounter][deletedBoard[wordArrayCounter].length - i] = "";
                    break;
                 } 
             }
-
-
-            console.log(deletedBoard);
+        }
+        }
+            console.log('This is the board after deletion '+ deletedBoard);
         setBoard(deletedBoard);
     }
     
     const enterHandler = () => {
         let wordCounter;
         let copyOfWordAttempt = [...wordAttempt]; //Why does thie work? Investigate this. 
-        for (wordCounter = 0; wordCounter < 7; wordCounter++) {
+        for (wordCounter = 0; wordCounter < 6; wordCounter++) {
             if (copyOfWordAttempt[wordCounter] == false) {
                 copyOfWordAttempt[wordCounter] = board[wordCounter].toString().replace(/,/g, ''); 
                 if (copyOfWordAttempt[wordCounter].length > 4) {
-                    setWordAttempt(copyOfWordAttempt);
+                    findWordInWordBank(copyOfWordAttempt[wordCounter], copyOfWordAttempt );
                     return;
                 }
-                else {
-                    notEnoughLetter(); 
-                    break; 
+                if (copyOfWordAttempt[wordCounter].length < 4) {
+                    setBooleanForNotEnough(true);
+                    return; 
                 }
             }
         }
 }
+
+    const findWordInWordBank = async (currentWordAttempt, allWordAttempts) => {
+        const textFile = await fetch(wordleBank);
+        const responseFile = await textFile.text();
+        const wordBankArray = responseFile.split("\r\n");   
+        const fixedCasingWordAttempt = currentWordAttempt.toLowerCase();
+        if (wordBankArray.includes(fixedCasingWordAttempt)){
+            setWordAttempt(allWordAttempts);
+            setBooleanForNotInWordList(false)
+            return
+        }
+        else {
+            setBooleanForNotInWordList(true)
+            return 
+        }
+      //  setBooleanForNotInWordList(true);
+    }
 
     const notEnoughLetter = () => {
         alert('Not enough letters'); 
