@@ -1,5 +1,6 @@
-import React, {useEffect, useRef} from 'react';
+import {useEffect, useRef} from 'react';
 
+//If this is the initial load, ...
 const useIsMount = () => {
     const isMountRef = useRef(true);
     useEffect(() => {

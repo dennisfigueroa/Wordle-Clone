@@ -20,11 +20,13 @@ function App() {
   const retrieveRandomWord = async () => {
     const textFile = await fetch(wordleBank);
     const responseFile = await textFile.text();
-    const wordBankArray = responseFile.split("\r\n");    
+    console.log('This is the responseFile' + responseFile);
+    const wordBankArray = responseFile.split(/\r?\n/);    
         // .then((response) => response.text())
     const yourWordIs = wordBankArray[Math.floor(Math.random()*(wordBankArray.length))];
-    setRandomWord(yourWordIs.toUpperCase())
     console.log(yourWordIs);
+
+   setRandomWord(yourWordIs.toUpperCase())
 } 
 
 useEffect( () => {

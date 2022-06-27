@@ -7,7 +7,7 @@ function Keyboard() {
     const row2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
     const row3 = ["Z", "X", "C", "V", "B", "N", "M"];
     
-    const { board, setBoard, wordAttempt, setWordAttempt, setBooleanForNotEnough, setBooleanForNotInWordList} = useContext(AppContext); 
+    const { board, setBoard, wordAttempt, setWordAttempt, setBooleanForNotEnough, setBooleanForNotInWordList, randomWord} = useContext(AppContext); 
 
     const clickHandler = (e) => {
         let i; 
@@ -73,7 +73,7 @@ function Keyboard() {
     const findWordInWordBank = async (currentWordAttempt, allWordAttempts) => {
         const textFile = await fetch(wordleBank);
         const responseFile = await textFile.text();
-        const wordBankArray = responseFile.split("\r\n");   
+        const wordBankArray = responseFile.split(/\r?\n/);   
         const fixedCasingWordAttempt = currentWordAttempt.toLowerCase();
         if (wordBankArray.includes(fixedCasingWordAttempt)){
             setWordAttempt(allWordAttempts);
@@ -91,7 +91,12 @@ function Keyboard() {
         alert('Not enough letters'); 
     }
 
-    useEffect( () => { console.log(wordAttempt)}, [wordAttempt]);
+    useEffect( () => { 
+        if ( wordAttempt.includes(randomWord) ) {
+            alert('Success'); 
+        }
+        
+        console.log(wordAttempt)}, [wordAttempt]);
  
     return (
         <div className ="keyboard" style={{'height':'40vh'}}>
