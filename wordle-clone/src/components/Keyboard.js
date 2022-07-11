@@ -73,7 +73,7 @@ function Keyboard() {
     const findWordInWordBank = async (currentWordAttempt, allWordAttempts) => {
         const textFile = await fetch(wordleBank);
         const responseFile = await textFile.text();
-        const wordBankArray = responseFile.split("\r\n");   
+        const wordBankArray = responseFile.split(/\r?\n/);   
         const fixedCasingWordAttempt = currentWordAttempt.toLowerCase();
         if (wordBankArray.includes(fixedCasingWordAttempt)){
             setWordAttempt(allWordAttempts);

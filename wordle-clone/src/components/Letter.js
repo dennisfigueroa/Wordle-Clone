@@ -10,15 +10,15 @@ function Letter({attemptWord, letterPos}) {
 
     function getBackgroundColor() {
 
-        if (word.indexOf(letter) == -1 ) {
+        if (word.indexOf(letter) === -1 ) {
             return '#787c7e'
         }
-        if (word[letterPos] == letter) {
+        if (word[letterPos] ===  letter) {
             return '#6aaa64';
 
 
         }
-        if (word.includes(letter) && word[letterPos] != letter && letter != "") {
+        if (word.includes(letter) && word[letterPos] !== letter && letter !== "") {
             return '#c9b458';
 
         }
