@@ -16,6 +16,7 @@ function Letter({attemptWord, letterPos}) {
         if (word[letterPos] == letter) {
             return '#6aaa64';
 
+
         }
         if (word.includes(letter) && word[letterPos] != letter && letter != "") {
             return '#c9b458';
@@ -31,6 +32,7 @@ function Letter({attemptWord, letterPos}) {
         <div className ="letter" style= { wordAttempt[attemptWord].length > 4 ? { backgroundColor : getBackgroundColor(), color: 'white'} : {}}>
             {letter}
         </div>
+
     )
 }
 

@@ -7,7 +7,7 @@ function Keyboard() {
     const row2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
     const row3 = ["Z", "X", "C", "V", "B", "N", "M"];
     
-    const { board, setBoard, wordAttempt, setWordAttempt, setBooleanForNotEnough, setBooleanForNotInWordList} = useContext(AppContext); 
+    const { board, setBoard, wordAttempt, setWordAttempt, setBooleanForNotEnough, setBooleanForNotInWordList, randomWord} = useContext(AppContext); 
 
     const clickHandler = (e) => {
         let i; 
@@ -91,7 +91,16 @@ function Keyboard() {
         alert('Not enough letters'); 
     }
 
-    useEffect( () => { console.log(wordAttempt)}, [wordAttempt]);
+    useEffect( () => { 
+        
+        console.log(wordAttempt)
+        if (wordAttempt.includes(randomWord)) {
+            setTimeout(
+                () => { alert('Success')
+           
+        }, 2500)
+}
+    }, [wordAttempt]);
  
     return (
         <div className ="keyboard" style={{'height':'40vh'}}>
